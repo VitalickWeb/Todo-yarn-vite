@@ -1,0 +1,131 @@
+body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: Arial;
+}
+
+.app {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  background-color: #1e1e1e;
+  min-height: 100vh;
+}
+
+.todo_box {
+  width: 280px;
+  background-color: rgba(56, 95, 129, 0.29);
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.empty_task {
+  color: orangered;
+}
+.list_item_tasks {
+  line-height: 30px;
+}
+.task {
+  display: flex;
+  align-items: center;
+}
+
+.del_task {
+  border-radius: 5px;
+  border: 1px solid transparent;
+  padding: 0.0em 0.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #2f5e8e;
+  cursor: pointer;
+
+  margin-left: 8px;
+}
+
+input#task_input {
+  border-radius: 8px;
+  border: 1px solid #3a3a3a;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-family: inherit;
+  background-color: #2e2e2e;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.25s, background-color 0.25s;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #646cff;
+  background-color: #2b2b2b;
+}
+
+input#task_input {
+  width: 225px;
+}
+
+.button_item:not(:last-child) {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #2f5e8e;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin-right: 8px;
+}
+.button_item {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #2f5e8e;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button {
+  color: aliceblue;
+}
+.button_item:hover {
+  border-color: #b8bf57;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/*@media (prefers-color-scheme: light) {*/
+/*  :root {*/
+/*    color: rgba(215, 215, 215, 0.96);*/
+/*    background-color: #ffffff;*/
+/*  }*/
+/*  a:hover {*/
+/*    color: #b8bf57;*/
+/*  }*/
+/*  button {*/
+/*    background-color: #b8bf57;*/
+/*  }*/
+/*}*/
