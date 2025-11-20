@@ -1,9 +1,9 @@
-import React, {FC} from "react";
+import React, {ChangeEvent, FC, useState} from "react";
 import {type filterType} from "../App";
 import {Button} from "./Button/Button";
 
 export type TaskType = {
-    id: number;
+    id: string;
     title: string;
     isDone: boolean;
 };
@@ -12,7 +12,8 @@ export type TodoListItemType = {
     title: string;
     tasks: TaskType[];
     date?: string;
-    removeTasks: (id: number) => void
+    removeTasks: (id: string) => void
+    addTask: (task: string) => void
     filterTasks: (filter: filterType) => void
 };
 
@@ -22,8 +23,11 @@ export const TodoListItem: FC<TodoListItemType> =
          tasks,
          date,
          removeTasks,
+         addTask,
          filterTasks,
      }) => {
+
+        let [task, setTask] = useState<string>('')
 
         const renderTasks = tasks.length === 0
             ? <span className="empty_task">Enter task!</span>
@@ -46,6 +50,18 @@ export const TodoListItem: FC<TodoListItemType> =
                 )
             })
 
+        const onChangeTaskHandler = (e: ChangeEvent<HTMLInputElement>) => {
+            setTask(e.currentTarget.value)
+        }
+
+        const onClickAddTaskHandler = () => {
+            if (task.trim() !== '') {
+                addTask(task)
+                console.log(task)
+                setTask('')
+            }
+        }
+
         const filterTaskHandlerAll = () => {filterTasks("All")}
         const filterTaskHandlerActive = () => {filterTasks("Active")}
         const filterTaskHandlerCompleted = () => {filterTasks("Completed")}
@@ -55,12 +71,14 @@ export const TodoListItem: FC<TodoListItemType> =
                 <h3>{title}</h3>
                 <div>
                     <input
-                        type="text"
+                        value={task}
                         id="task_input"
+                        onChange={onChangeTaskHandler}
                     />
                     <Button
                         className="button_item"
                         title="+"
+                        onClick={onClickAddTaskHandler}
                     />
                 </div>
                 <ol className="list_item_tasks">{renderTasks}</ol>
