@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, FC, useState} from "react";
 import {type filterType} from "../App";
 import {Button} from "./Button/Button";
 
@@ -39,7 +39,7 @@ export const TodoListItem: FC<TodoListItemType> =
 
                 return (
                     <li key={t.id} className="task">
-                        <input type="checkbox" checked={t.isDone} />
+                        <input type="checkbox" checked={t.isDone}/>
                         <span>{t.title}</span>
                         <Button
                             title="×"
@@ -53,18 +53,29 @@ export const TodoListItem: FC<TodoListItemType> =
         const onChangeTaskHandler = (e: ChangeEvent<HTMLInputElement>) => {
             setTask(e.currentTarget.value)
         }
+        const onKeyTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === "Enter") {
+                setTask(e.key)
+                onClickAddTaskHandler()
+            }
+        }
 
         const onClickAddTaskHandler = () => {
             if (task.trim() !== '') {
                 addTask(task)
-                console.log(task)
                 setTask('')
             }
         }
 
-        const filterTaskHandlerAll = () => {filterTasks("All")}
-        const filterTaskHandlerActive = () => {filterTasks("Active")}
-        const filterTaskHandlerCompleted = () => {filterTasks("Completed")}
+        const filterTaskHandlerAll = () => {
+            filterTasks("All")
+        }
+        const filterTaskHandlerActive = () => {
+            filterTasks("Active")
+        }
+        const filterTaskHandlerCompleted = () => {
+            filterTasks("Completed")
+        }
 
         return (
             <div className="todo_box">
@@ -74,6 +85,7 @@ export const TodoListItem: FC<TodoListItemType> =
                         value={task}
                         id="task_input"
                         onChange={onChangeTaskHandler}
+                        onKeyDown={onKeyTaskHandler}
                     />
                     <Button
                         className="button_item"
