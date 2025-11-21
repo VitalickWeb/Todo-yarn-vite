@@ -15,6 +15,7 @@ export type TodoListItemType = {
     removeTasks: (id: string) => void
     addTask: (task: string) => void
     filterTasks: (filter: filterType) => void
+    changeStatus: (id: string, isDone: boolean) => void
 };
 
 export const TodoListItem: FC<TodoListItemType> =
@@ -25,6 +26,7 @@ export const TodoListItem: FC<TodoListItemType> =
          removeTasks,
          addTask,
          filterTasks,
+         changeStatus,
      }) => {
 
         let [task, setTask] = useState<string>('')
@@ -35,6 +37,7 @@ export const TodoListItem: FC<TodoListItemType> =
 
         const isButtonDisabled = !task.length || task.length > 15
 
+
         const renderTasks = tasks.length === 0
             ? <span className="empty_task">Enter task!</span>
             : tasks.map(t => {
@@ -42,10 +45,17 @@ export const TodoListItem: FC<TodoListItemType> =
                 const removeTaskHandler = () => {
                     removeTasks(t.id)
                 }
+                const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+                    changeStatus(t.id, e.currentTarget.checked)
+                }
 
                 return (
                     <li key={t.id} className="task">
-                        <input type="checkbox" checked={t.isDone}/>
+                        <input
+                            type="checkbox"
+                            checked={t.isDone}
+                            onChange={onStatusChange}
+                        />
                         <span>{t.title}</span>
                         <Button
                             title="×"
@@ -55,7 +65,6 @@ export const TodoListItem: FC<TodoListItemType> =
                     </li>
                 )
             })
-
 
 
         const onChangeTaskHandler = (e: ChangeEvent<HTMLInputElement>) => {

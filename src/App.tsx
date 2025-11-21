@@ -21,7 +21,7 @@ export const App = () => {
     //     {id: 3, title: "Bag", isDone: false},
     // ];
 
-    const removeTasks = (id: string  | Uint8Array<ArrayBufferLike>) => {
+    const removeTasks = (id: string) => {
         setTasks(tasks.filter((t) => t.id !== id))
     }
 
@@ -31,8 +31,11 @@ export const App = () => {
             title: task,
             isDone: false
         }
-
         setTasks([newTask, ...tasks])
+    }
+
+    const changeStatus = (id: string, isDone: boolean) => {
+        setTasks(tasks.map((t) => t.id === id ? {...t, isDone: isDone} : t))
     }
 
     const [filter, setFilter] = useState<filterType>("All")
@@ -57,6 +60,7 @@ export const App = () => {
                 removeTasks={removeTasks}
                 addTask={addTask}
                 filterTasks={filterTasks}
+                changeStatus={changeStatus}
                 date="11.11.2025"
             />
             {/*<TodoListItem*/}
