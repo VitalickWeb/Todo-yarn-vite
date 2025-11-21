@@ -29,6 +29,12 @@ export const TodoListItem: FC<TodoListItemType> =
 
         let [task, setTask] = useState<string>('')
 
+        const enterInput = task.length <= 15
+            ? ''
+            : <span className="checkSymbols">Too many symbols!</span>
+
+        const isButtonDisabled = !task.length || task.length > 15
+
         const renderTasks = tasks.length === 0
             ? <span className="empty_task">Enter task!</span>
             : tasks.map(t => {
@@ -49,6 +55,8 @@ export const TodoListItem: FC<TodoListItemType> =
                     </li>
                 )
             })
+
+
 
         const onChangeTaskHandler = (e: ChangeEvent<HTMLInputElement>) => {
             setTask(e.currentTarget.value)
@@ -91,8 +99,12 @@ export const TodoListItem: FC<TodoListItemType> =
                         className="button_item"
                         title="+"
                         onClick={onClickAddTaskHandler}
+                        disabled={isButtonDisabled}
                     />
                 </div>
+
+                <div className="warning_text">{enterInput}</div>
+
                 <ol className="list_item_tasks">{renderTasks}</ol>
                 <div className="button">
                     <Button

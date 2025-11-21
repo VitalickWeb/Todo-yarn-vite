@@ -2,7 +2,7 @@ body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
 }
 
 .app {
@@ -16,7 +16,7 @@ body, #root {
 }
 
 .todo_box {
-  width: 280px;
+  width: 286px;
   background-color: rgba(56, 95, 129, 0.29);
   padding: 10px;
   border-radius: 10px;
@@ -75,7 +75,6 @@ input#task_input {
 }
 
 input:focus {
-  border-color: #646cff;
   background-color: #2b2b2b;
 }
 
@@ -116,6 +115,19 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+.warning_text{
+  width: 180px;
+  height: 20px;
+
+  padding-top: 5px;
+}
+.checkSymbols {
+  color: orangered;
+}
+
+
+
+
 
 /*@media (prefers-color-scheme: light) {*/
 /*  :root {*/
