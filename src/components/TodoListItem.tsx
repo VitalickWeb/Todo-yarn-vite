@@ -96,7 +96,7 @@ export const TodoListItem: FC<TodoListItemType> =
                         onKeyDown={onKeyTaskHandler}
                     />
                     <Button
-                        className="button_item"
+                        className="button_item_add"
                         title="+"
                         onClick={onClickAddTaskHandler}
                         disabled={isButtonDisabled}
