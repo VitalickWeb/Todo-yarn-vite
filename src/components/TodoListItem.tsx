@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, FC, useState} from "react";
+import React, {ChangeEvent, FC, KeyboardEvent, useState} from "react";
 import {type filterType} from "../App";
 import {Button} from "./Button/Button";
 
@@ -30,13 +30,15 @@ export const TodoListItem: FC<TodoListItemType> =
      }) => {
 
         let [task, setTask] = useState<string>('')
+        let [error, setError] = useState<string | null>(null)
 
-        const enterInput = task.length <= 15
+        const enterValue = task.length <= 15
             ? ''
             : <span className="checkSymbols">Too many symbols!</span>
 
         const isButtonDisabled = !task.length || task.length > 15
 
+        const inputClasses = `task_input ${error ? 'error' : ''}`;
 
         const renderTasks = tasks.length === 0
             ? <span className="empty_task">Enter task!</span>
@@ -69,6 +71,9 @@ export const TodoListItem: FC<TodoListItemType> =
 
         const onChangeTaskHandler = (e: ChangeEvent<HTMLInputElement>) => {
             setTask(e.currentTarget.value)
+            if (task.length >= 0) {
+                setError("")
+            }
         }
         const onKeyTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") {
@@ -78,9 +83,12 @@ export const TodoListItem: FC<TodoListItemType> =
         }
 
         const onClickAddTaskHandler = () => {
-            if (task.trim() !== '') {
-                addTask(task)
+            const trimTitle = task.trim()
+            if (trimTitle !== '') {
+                addTask(trimTitle)
                 setTask('')
+            } else {
+                setError("Title is required")
             }
         }
 
@@ -100,7 +108,7 @@ export const TodoListItem: FC<TodoListItemType> =
                 <div>
                     <input
                         value={task}
-                        id="task_input"
+                        className={inputClasses}
                         onChange={onChangeTaskHandler}
                         onKeyDown={onKeyTaskHandler}
                     />
@@ -112,7 +120,9 @@ export const TodoListItem: FC<TodoListItemType> =
                     />
                 </div>
 
-                <div className="warning_text">{enterInput}</div>
+                {error && <div className="error_message">{error}</div>}
+                {enterValue && <div className="warning_text">{enterValue}</div>}
+
 
                 <ol className="list_item_tasks">{renderTasks}</ol>
                 <div className="button">

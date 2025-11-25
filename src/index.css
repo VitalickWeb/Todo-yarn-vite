@@ -61,7 +61,8 @@ h1 {
   margin-left: 8px;
 }
 
-input#task_input {
+.task_input {
+  width: 225px;
   border-radius: 8px;
   border: 1px solid #3a3a3a;
   padding: 0.6em 1.2em;
@@ -78,10 +79,13 @@ input:focus {
   background-color: #2b2b2b;
 }
 
-input#task_input {
-  width: 225px;
+.error {
+  border: 1px solid red;
 }
-
+.error_message {
+  color: red;
+  padding-top: 5px;
+}
 .button_item:not(:last-child) {
   border-radius: 8px;
   border: 1px solid transparent;
