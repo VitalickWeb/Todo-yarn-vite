@@ -71,9 +71,7 @@ export const TodoListItem: FC<TodoListItemType> =
 
         const onChangeTaskHandler = (e: ChangeEvent<HTMLInputElement>) => {
             setTask(e.currentTarget.value)
-            if (task.length >= 0) {
-                setError("")
-            }
+            setError(null)
         }
         const onKeyTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") {
