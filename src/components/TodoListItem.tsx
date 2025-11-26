@@ -15,6 +15,7 @@ export type TodoListItemType = {
     removeTasks: (id: string) => void
     addTask: (task: string) => void
     filterTasks: (filter: filterType) => void
+    filter: string
     changeStatus: (id: string, isDone: boolean) => void
 };
 
@@ -26,6 +27,7 @@ export const TodoListItem: FC<TodoListItemType> =
          removeTasks,
          addTask,
          filterTasks,
+         filter,
          changeStatus,
      }) => {
 
@@ -47,18 +49,19 @@ export const TodoListItem: FC<TodoListItemType> =
                 const removeTaskHandler = () => {
                     removeTasks(t.id)
                 }
+
                 const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
                     changeStatus(t.id, e.currentTarget.checked)
                 }
 
                 return (
-                    <li key={t.id} className="task">
+                    <li key={t.id}>
                         <input
                             type="checkbox"
                             checked={t.isDone}
                             onChange={onStatusChange}
                         />
-                        <span>{t.title}</span>
+                        <span className={t.isDone ? "line_through" : ''}>{t.title}</span>
                         <Button
                             title="×"
                             className="del_task"
@@ -67,7 +70,6 @@ export const TodoListItem: FC<TodoListItemType> =
                     </li>
                 )
             })
-
 
         const onChangeTaskHandler = (e: ChangeEvent<HTMLInputElement>) => {
             setTask(e.currentTarget.value)
@@ -125,17 +127,17 @@ export const TodoListItem: FC<TodoListItemType> =
                 <ol className="list_item_tasks">{renderTasks}</ol>
                 <div className="button">
                     <Button
-                        className="button_item"
+                        className={`button_item ${filter === "All" ? "filtered_active" : ""}`}
                         onClick={filterTaskHandlerAll}
                         title="All"
                     />
                     <Button
-                        className="button_item"
+                        className={`button_item ${filter === "Active" ? "filtered_active" : ""}`}
                         onClick={filterTaskHandlerActive}
                         title="Active"
                     />
                     <Button
-                        className="button_item"
+                        className={`button_item ${filter === "Completed" ? "filtered_active" : ""}`}
                         onClick={filterTaskHandlerCompleted}
                         title="Completed"
                     />

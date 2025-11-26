@@ -17,7 +17,7 @@ body, #root {
 
 .todo_box {
   width: 286px;
-  background-color: rgba(56, 95, 129, 0.29);
+  background-color: rgba(87, 159, 191, 0.29);
   padding: 10px;
   border-radius: 10px;
   color: white;
@@ -47,7 +47,10 @@ h1 {
   display: flex;
   align-items: center;
 }
-
+.line_through {
+  text-decoration: line-through;
+  text-decoration-color: orangered;
+}
 .del_task {
   border-radius: 5px;
   border: 1px solid transparent;
@@ -57,6 +60,7 @@ h1 {
   font-family: inherit;
   background-color: #2f5e8e;
   cursor: pointer;
+  text-decoration: none;
 
   margin-left: 8px;
 }
@@ -145,6 +149,11 @@ button:focus-visible {
 }
 .checkSymbols {
   color: orangered;
+}
+.button_item.filtered_active {
+  background-color: #b8bf57;
+  border: 1px solid #535bf2;
+  color: #2F5E8EFF;
 }
 
 

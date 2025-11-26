@@ -59,6 +59,7 @@ export const App = () => {
                 tasks={filterShow}
                 removeTasks={removeTasks}
                 addTask={addTask}
+                filter={filter}
                 filterTasks={filterTasks}
                 changeStatus={changeStatus}
                 date="11.11.2025"

@@ -3,12 +3,14 @@ import React, {ButtonHTMLAttributes, FC} from 'react';
 export type ButtonType = {
     title: string
     onClick: () => void
+    className?: string
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button: FC<ButtonType> =
     ({
          title,
          onClick,
+         className,
          ...props
      }) => {
 
@@ -18,7 +20,7 @@ export const Button: FC<ButtonType> =
 
         return (
             <button
-                className="button_item"
+                className={className}
                 onClick={onClickAddTaskHandler}
                 {...props}
             >
