@@ -19,6 +19,7 @@ body, #root {
   width: 286px;
   background-color: rgba(87, 159, 191, 0.29);
   padding: 10px;
+  border: 1px solid rgba(87, 159, 191, 0.51);
   border-radius: 10px;
   color: white;
 }
@@ -47,9 +48,11 @@ h1 {
   display: flex;
   align-items: center;
 }
+
 .line_through {
   text-decoration: line-through;
   text-decoration-color: orangered;
+  opacity: 50%;
 }
 .del_task {
   border-radius: 5px;

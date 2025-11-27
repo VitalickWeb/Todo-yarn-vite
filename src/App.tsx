@@ -21,8 +21,8 @@ export const App = () => {
     //     {id: 3, title: "Bag", isDone: false},
     // ];
 
-    const removeTasks = (id: string) => {
-        setTasks(tasks.filter((t) => t.id !== id))
+    const removeTasks = (taskId: string) => {
+        setTasks(tasks.filter((t) => t.id !== taskId))
     }
 
     const addTask = (task: string) => {
@@ -34,8 +34,8 @@ export const App = () => {
         setTasks([newTask, ...tasks])
     }
 
-    const changeStatus = (id: string, isDone: boolean) => {
-        setTasks(tasks.map((t) => t.id === id ? {...t, isDone: isDone} : t))
+    const changeStatus = (taskId: string, isDone: boolean) => {
+        setTasks(tasks.map((t) => t.id === taskId ? {...t, isDone: isDone} : t))
     }
 
     const [filter, setFilter] = useState<filterType>("All")

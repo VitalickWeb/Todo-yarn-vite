@@ -12,11 +12,11 @@ export type TodoListItemType = {
     title: string;
     tasks: TaskType[];
     date?: string;
-    removeTasks: (id: string) => void
+    removeTasks: (taskId: string) => void
     addTask: (task: string) => void
     filterTasks: (filter: filterType) => void
-    filter: string
-    changeStatus: (id: string, isDone: boolean) => void
+    filter: filterType
+    changeStatus: (taskId: string, isDone: boolean) => void
 };
 
 export const TodoListItem: FC<TodoListItemType> =
