@@ -3,7 +3,24 @@ import {type TaskType, TodoListItem} from "./components/TodoListItem";
 import {v4} from 'uuid';
 export type filterType = "All" | "Active" | "Completed"
 
+export type todoListsType = {
+    id: string
+    title: string
+    filter: string
+}
+
+// export type TodoListState = {
+//     [key: string]: todoListsType
+// }
+
 export const App = () => {
+    // const todoListId1 = v4()
+    // const todoListId2 = v4()
+
+    let [todoLists, setTodoLists] = useState<todoListsType[]>([
+    {id: v4(), title: "What to learn", filter: "tasks"},
+    {id: v4(), title: "What to buy", filter: "purchases"},
+])
 
     const [tasks, setTasks] = useState<TaskType[]>([
             {id: v4(), title: "HTML&CSS", isDone: true},
@@ -14,12 +31,12 @@ export const App = () => {
         ]
     )
 
-    // const tasks2: TaskType[] = [
-    //     {id: 1, title: "Guitar", isDone: true},
-    //     {id: 2, title: "Combo", isDone: true},
-    //     {id: 3, title: "String", isDone: false},
-    //     {id: 3, title: "Bag", isDone: false},
-    // ];
+    let [purchases, setPurchases] = useState<TaskType[]>([
+        {id: v4(), title: "Guitar", isDone: true},
+        {id: v4(), title: "Combo", isDone: true},
+        {id: v4(), title: "String", isDone: false},
+        {id: v4(), title: "Bag", isDone: false},
+    ])
 
     const removeTasks = (taskId: string) => {
         setTasks(tasks.filter((t) => t.id !== taskId))
