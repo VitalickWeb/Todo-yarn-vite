@@ -39,8 +39,8 @@ export const App = () => {
         ]
     })
 
-    const removeTasks = (taskId: string) => {
-        // setTasks(tasks.filter((t) => t.id !== taskId))
+    const removeTasks = (todoID: string, taskId: string) => {
+        setTasks({...tasks, [todoID]: tasks[todoID].filter((t) => t.id !== taskId)})
     }
 
     const addTask = (task: string) => {
@@ -56,17 +56,16 @@ export const App = () => {
         // setTasks(tasks.map((t) => t.id === taskId ? {...t, isDone: isDone} : t))
     }
 
-    //const [filter, setFilter] = useState<filterType>("All")
-
-    const filterTasks = (filter: filterType) => {
-        //setTasks(filter)
+    const filterTasks = (todoID: string, filter: filterType) => {
+        setTodoLists(todoLists.map((filtered) =>
+            filtered.id === todoID ? {...filtered, filter: filter} : filtered))
     }
 
     return (
         <div className="app">
             {todoLists.map((todo) => {
                 let filterShow = tasks[todo.id]
-                console.log(tasks[todo.id])
+
                 if (todo.filter === "Active") {
                     filterShow = tasks[todo.id].filter(f => !f.isDone)
                 } else if (todo.filter === "Completed") {
@@ -74,24 +73,21 @@ export const App = () => {
                 }
 
                 return (
-                    <TodoListItem key={todo.id}
-                                  title={todo.title}
-                                  tasks={filterShow}
-                                  removeTasks={removeTasks}
-                                  addTask={addTask}
-                                  filter={todo.filter}
-                                  filterTasks={filterTasks}
-                                  changeStatus={changeStatus}
-                                  date="11.11.2025"
+                    <TodoListItem
+                        key={todo.id}
+                        todoListID={todo.id}
+                        title={todo.title}
+                        tasks={filterShow}
+                        removeTasks={removeTasks}
+                        addTask={addTask}
+                        filter={todo.filter}
+                        filterTasks={filterTasks}
+                        changeStatus={changeStatus}
+                        date="11.11.2025"
                     />
                 )
 
             })}
-
-            {/*<TodoListItem*/}
-            {/*    title="What to bye"*/}
-            {/*    tasks={tasks2}*/}
-            {/*/>*/}
         </div>
     );
 

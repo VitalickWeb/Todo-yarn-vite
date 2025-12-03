@@ -9,18 +9,20 @@ export type TaskType = {
 };
 
 export type TodoListItemType = {
+    todoListID: string
     title: string;
     tasks: TaskType[];
     date?: string;
-    removeTasks: (taskId: string) => void
+    removeTasks: (todoID: string, taskId: string) => void
     addTask: (task: string) => void
-    filterTasks: (filter: filterType) => void
+    filterTasks: (todoID: string, filter: filterType) => void
     filter: filterType
     changeStatus: (taskId: string, isDone: boolean) => void
 };
 
 export const TodoListItem: FC<TodoListItemType> =
     ({
+         todoListID,
          title,
          tasks,
          date,
@@ -47,7 +49,7 @@ export const TodoListItem: FC<TodoListItemType> =
             : tasks.map(t => {
 
                 const removeTaskHandler = () => {
-                    removeTasks(t.id)
+                    removeTasks(todoListID, t.id)
                 }
 
                 const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -93,13 +95,13 @@ export const TodoListItem: FC<TodoListItemType> =
         }
 
         const filterTaskHandlerAll = () => {
-            filterTasks("All")
+            filterTasks(todoListID, "All")
         }
         const filterTaskHandlerActive = () => {
-            filterTasks("Active")
+            filterTasks(todoListID, "Active")
         }
         const filterTaskHandlerCompleted = () => {
-            filterTasks("Completed")
+            filterTasks(todoListID, "Completed")
         }
 
         return (
