@@ -17,7 +17,7 @@ export type TodoListItemType = {
     addTask: (todoID: string, task: string) => void
     filterTasks: (todoID: string, filter: filterType) => void
     filter: filterType
-    changeStatus: (taskId: string, isDone: boolean) => void
+    changeStatus: (todoID: string, taskId: string, isDone: boolean) => void
 };
 
 export const TodoListItem: FC<TodoListItemType> =
@@ -53,7 +53,7 @@ export const TodoListItem: FC<TodoListItemType> =
                 }
 
                 const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-                    changeStatus(t.id, e.currentTarget.checked)
+                    changeStatus(todoListID, t.id, e.currentTarget.checked)
                 }
 
                 return (

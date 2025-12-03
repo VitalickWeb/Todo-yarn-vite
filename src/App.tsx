@@ -10,8 +10,8 @@ export type todoListsType = {
     filter: filterType
 }
 
-// export type TodoListState = {
-//     [key: string]: todoListsType
+// export type TodoListStateType = {
+//     [key: string]: todoListsType[]
 // }
 
 export const App = () => {
@@ -44,16 +44,12 @@ export const App = () => {
     }
 
     const addTask = (todoID: string, task: string) => {
-        let newTask: TaskType = {
-            id: v4(),
-            title: task,
-            isDone: false
-        }
+        let newTask: TaskType = {id: v4(), title: task, isDone: false}
         setTasks({...tasks, [todoID]: [newTask, ...tasks[todoID]]})
     }
 
-    const changeStatus = (taskId: string, isDone: boolean) => {
-        // setTasks(tasks.map((t) => t.id === taskId ? {...t, isDone: isDone} : t))
+    const changeStatus = (todoID: string, taskId: string, isDone: boolean) => {
+        setTasks({...tasks, [todoID]: tasks[todoID].map(t => t.id === taskId ? {...t, isDone: isDone} : t)})
     }
 
     const filterTasks = (todoID: string, filter: filterType) => {
@@ -86,7 +82,6 @@ export const App = () => {
                         date="11.11.2025"
                     />
                 )
-
             })}
         </div>
     );
