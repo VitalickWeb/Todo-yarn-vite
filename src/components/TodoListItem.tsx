@@ -14,7 +14,7 @@ export type TodoListItemType = {
     tasks: TaskType[];
     date?: string;
     removeTasks: (todoID: string, taskId: string) => void
-    addTask: (task: string) => void
+    addTask: (todoID: string, task: string) => void
     filterTasks: (todoID: string, filter: filterType) => void
     filter: filterType
     changeStatus: (taskId: string, isDone: boolean) => void
@@ -87,7 +87,7 @@ export const TodoListItem: FC<TodoListItemType> =
         const onClickAddTaskHandler = () => {
             const trimTitle = task.trim()
             if (trimTitle !== '') {
-                addTask(trimTitle)
+                addTask(todoListID, trimTitle)
                 setTask('')
             } else {
                 setError("Title is required")

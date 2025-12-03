@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {TodoListItem} from "./components/TodoListItem";
+import {type TaskType, TodoListItem} from "./components/TodoListItem";
 import {v4} from 'uuid';
 
 export type filterType = "All" | "Active" | "Completed"
@@ -43,13 +43,13 @@ export const App = () => {
         setTasks({...tasks, [todoID]: tasks[todoID].filter((t) => t.id !== taskId)})
     }
 
-    const addTask = (task: string) => {
-        // let newTask: TaskType = {
-        //     id: v4(),
-        //     title: task,
-        //     isDone: false
-        // }
-        // setTasks([newTask, ...tasks])
+    const addTask = (todoID: string, task: string) => {
+        let newTask: TaskType = {
+            id: v4(),
+            title: task,
+            isDone: false
+        }
+        setTasks({...tasks, [todoID]: [newTask, ...tasks[todoID]]})
     }
 
     const changeStatus = (taskId: string, isDone: boolean) => {
