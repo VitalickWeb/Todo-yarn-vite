@@ -4,26 +4,26 @@ import {v4} from 'uuid';
 
 export type filterType = "All" | "Active" | "Completed"
 
-export type todoListsType = {
+export type TodoListsType = {
     id: string
     title: string
     filter: filterType
 }
 
-// export type TodoListStateType = {
-//     [key: string]: todoListsType[]
-// }
+export type TasksStateType = {
+    [key: string]: TaskType[]
+}
 
 export const App = () => {
     const todoListId1 = v4()
     const todoListId2 = v4()
 
-    let [todoLists, setTodoLists] = useState<todoListsType[]>([
+    let [todoLists, setTodoLists] = useState<TodoListsType[]>([
         {id: todoListId1, title: "What to learn", filter: "All"},
         {id: todoListId2, title: "What to buy", filter: "All"},
-    ] as todoListsType[])
+    ] as TodoListsType[])
 
-    const [tasks, setTasks] = useState({
+    const [tasks, setTasks] = useState<TasksStateType>({
         [todoListId1]: [
             {id: v4(), title: "HTML&CSS", isDone: true},
             {id: v4(), title: "JS", isDone: true},
@@ -73,10 +73,10 @@ export const App = () => {
                         key={todo.id}
                         todoListID={todo.id}
                         title={todo.title}
+                        filter={todo.filter}
                         tasks={filterShow}
                         removeTasks={removeTasks}
                         addTask={addTask}
-                        filter={todo.filter}
                         filterTasks={filterTasks}
                         changeStatus={changeStatus}
                         date="11.11.2025"
@@ -85,6 +85,4 @@ export const App = () => {
             })}
         </div>
     );
-
-
 };
