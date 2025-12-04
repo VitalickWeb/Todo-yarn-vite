@@ -13,6 +13,7 @@ export type TodoListItemType = {
     title: string;
     tasks: TaskType[];
     date?: string;
+    removeTodoList: (todoID: string) => void
     removeTasks: (todoID: string, taskId: string) => void
     addTask: (todoID: string, task: string) => void
     filterTasks: (todoID: string, filter: filterType) => void
@@ -22,14 +23,9 @@ export type TodoListItemType = {
 
 export const TodoListItem: FC<TodoListItemType> =
     ({
-         todoListID,
-         title,
-         tasks,
-         removeTasks,
-         addTask,
-         filterTasks,
-         filter,
-         changeStatus,
+         todoListID, removeTasks, filterTasks,
+         title, removeTodoList, filter,
+         tasks, addTask, changeStatus,
          date,
      }) => {
 
@@ -114,9 +110,22 @@ export const TodoListItem: FC<TodoListItemType> =
             filterTasks(todoListID, "Completed")
         }
 
+        const onRemoveTodoListHandler = () => {
+            removeTodoList(todoListID)
+        }
+
         return (
             <div className="todo_box">
-                <h3>{title}</h3>
+
+                <div className="title_button_box">
+                    <h3>{title}</h3>
+                    <Button
+                        className="remove_todo"
+                        title="×"
+                        onClick={onRemoveTodoListHandler}
+                    />
+                </div>
+
                 <div>
                     <input
                         value={task}

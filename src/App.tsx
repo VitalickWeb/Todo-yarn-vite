@@ -57,6 +57,10 @@ export const App = () => {
             filtered.id === todoID ? {...filtered, filter: filter} : filtered))
     }
 
+    const removeTodoList = (todoID: string) => {
+        setTodoLists(todoLists.filter(el => el.id !== todoID))
+    }
+
     return (
         <div className="app">
             {todoLists.map((todo) => {
@@ -68,6 +72,8 @@ export const App = () => {
                         title={todo.title}
                         filter={todo.filter}
                         tasks={tasks[todo.id]}
+
+                        removeTodoList={removeTodoList}
                         removeTasks={removeTasks}
                         addTask={addTask}
                         filterTasks={filterTasks}

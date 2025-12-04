@@ -23,7 +23,11 @@ body, #root {
   border-radius: 10px;
   color: white;
 }
+.title_button_box {
+  height: 39px;
+  margin-bottom: 5px;
 
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -37,7 +41,9 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
+h3 {
+  display: inline;
+}
 .empty_task {
   color: orangered;
 }
@@ -118,6 +124,18 @@ input:focus {
 }
 button {
   color: aliceblue;
+}
+.remove_todo {
+  border-radius: 5px;
+  border: 1px solid transparent;
+  padding: 0.2em 0.6em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #2f5e8e;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 8px;
 }
 .button_item:hover {
   border-color: #b8bf57;
