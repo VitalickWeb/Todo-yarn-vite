@@ -60,13 +60,6 @@ export const App = () => {
     return (
         <div className="app">
             {todoLists.map((todo) => {
-                let filterShow = tasks[todo.id]
-
-                if (todo.filter === "Active") {
-                    filterShow = tasks[todo.id].filter(f => !f.isDone)
-                } else if (todo.filter === "Completed") {
-                    filterShow = tasks[todo.id].filter(f => f.isDone)
-                }
 
                 return (
                     <TodoListItem
@@ -74,7 +67,7 @@ export const App = () => {
                         todoListID={todo.id}
                         title={todo.title}
                         filter={todo.filter}
-                        tasks={filterShow}
+                        tasks={tasks[todo.id]}
                         removeTasks={removeTasks}
                         addTask={addTask}
                         filterTasks={filterTasks}

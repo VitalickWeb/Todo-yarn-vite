@@ -25,13 +25,23 @@ export const TodoListItem: FC<TodoListItemType> =
          todoListID,
          title,
          tasks,
-         date,
          removeTasks,
          addTask,
          filterTasks,
          filter,
          changeStatus,
+         date,
      }) => {
+
+        let tasksToShow
+
+            if (filter === "Active") {
+                tasksToShow = tasks.filter(f => !f.isDone)
+            } else if (filter === "Completed") {
+                tasksToShow = tasks.filter(f => f.isDone)
+            } else {
+                tasksToShow = tasks
+            }
 
         let [task, setTask] = useState<string>('')
         let [error, setError] = useState<string | null>(null)
@@ -44,9 +54,9 @@ export const TodoListItem: FC<TodoListItemType> =
 
         const inputClasses = `task_input ${error ? 'error' : ''}`;
 
-        const renderTasks = tasks.length === 0
+        const renderTasks = tasksToShow.length === 0
             ? <span className="empty_task">Enter task!</span>
-            : tasks.map(t => {
+            : tasksToShow.map(t => {
 
                 const removeTaskHandler = () => {
                     removeTasks(todoListID, t.id)
